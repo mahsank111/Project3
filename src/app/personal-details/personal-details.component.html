@@ -1,0 +1,25 @@
+<h2>Personal Details Form</h2>
+
+<form #form="ngForm" (ngSubmit)="submitForm(form)">
+  <div>
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" ngModel required>
+    <div *ngIf="form.controls['name'].invalid && (form.controls['name'].dirty || form.controls['name'].touched)">
+      <div *ngIf="form.controls['name'].errors?.['required']">Name is required.</div>
+    </div>
+  </div>
+
+  <div>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" ngModel required email>
+    <div *ngIf="form.controls['email'].invalid && (form.controls['email'].dirty || form.controls['email'].touched)">
+      <div *ngIf="form.controls['email'].errors?.['required']">Email is required.</div>
+      <div *ngIf="form.controls['email'].errors?.['email']">Invalid email format.</div>
+    </div>
+  </div>
+
+  
+
+  <button type="submit" [disabled]="form.invalid">Submit</button>
+</form>
+
